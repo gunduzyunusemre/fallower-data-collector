@@ -37,11 +37,10 @@ logs/
 fallower.log
 fallower_data.bin
 
-# Dataset & Recording folders
+# Dataset & Recording folders (Prevent committing large data files)
 FALLOWER DATASETS/
 FALLOWER_DATASETS/
 datasets/
-data/
 output_data/
 labels/
 *.npy

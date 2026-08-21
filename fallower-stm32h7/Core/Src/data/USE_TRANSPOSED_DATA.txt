@@ -1,0 +1,20 @@
+=== TRANSPOSED TEST DATA GUIDE ===
+
+1. Copy file from export_data folder:
+   Source: C:\Users\ethem\Desktop\back-ups\working-demo\export_data\fall_128_test_data_TRANSPOSED.h
+   Dest:   C:\Users\ethem\Desktop\back-ups\working-demo\embedded_board_V1.1\fallower-device\Core\Src\data\
+
+2. In UsbCommunication.cpp, change the test data include:
+   FROM: #include "data/fall_128_test_data.h"
+   TO:   #include "data/fall_128_test_data_TRANSPOSED.h"
+
+3. Change the array name:
+   FROM: const float* input_data = fall_128_test_data;
+   TO:   const float* input_data = fall_128_test_data_transposed;
+
+4. Rebuild and test!
+
+WHY THIS WORKS:
+X-CUBE-AI expects NCHW format: [1, 1, 688, 30] = (batch, channels, width, height)
+Original data is NHWC format: [1, 30, 688, 1] = (batch, height, width, channels)
+Transposed data converts (30, 688) → (688, 30) to match X-CUBE-AI's expectation.
